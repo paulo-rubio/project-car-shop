@@ -2,6 +2,8 @@ export default function errorMap(message: string) {
   switch (message) {
     case 'Car not found':
       return { type: 404, message };
+    case 'Motorcycle not found':
+      return { type: 404, message };
     case 'Invalid mongo id':
       return { type: 422, message };
     default:
