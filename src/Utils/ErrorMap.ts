@@ -8,6 +8,3 @@ export default function errorMap(message: string) {
       return { type: 500, message: 'error' };
   }
 }
-module.exports = {
-  errorMap,
-};

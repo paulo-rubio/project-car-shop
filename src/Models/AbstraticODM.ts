@@ -1,6 +1,5 @@
 import {
   Model,
-  isValidObjectId,
   models,
   Schema,
   model,
@@ -25,15 +24,11 @@ export default abstract class AbstractODM<T> {
     return this.model.find();
   }
 
-  public async findById(id: string) {
-    if (!isValidObjectId(id)) throw new Error('Invalid mongo id');
-
+  public async findById(id: string): Promise<T | null> {
     return this.model.findOne({ _id: id });
   }
 
   public async update(id: string, obj: T | undefined) {
-    if (!isValidObjectId(id)) throw new Error('Invalid mongo id');
-
     await this.model.updateOne({ _id: id }, { $set: { ...obj } });
   }
 }

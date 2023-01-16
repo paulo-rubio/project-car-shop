@@ -1,4 +1,4 @@
-import IAeB from '../Interfaces/IAeB';
+import IVeiculos from '../Interfaces/IVeiculos';
 
 export default class AeBDomains {
   protected id: string | undefined;
@@ -8,7 +8,7 @@ export default class AeBDomains {
   protected status: boolean | undefined;
   protected buyValue: number;
 
-  constructor(AeB : IAeB) {
+  constructor(AeB : IVeiculos) {
     this.id = AeB.id;
     this.model = AeB.model;
     this.year = AeB.year;

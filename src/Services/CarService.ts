@@ -34,8 +34,8 @@ export default class CarService {
     if (!isValidObjectId(id)) throw new Error('Invalid mongo id');
 
     const car = await this.model.findById(id);
-    
-    if (!car) throw new Error('Car not Found');
+    if (!car) throw new Error('Car not found');
+
     await this.model.update(id, data);
 
     return CarService.createCarDomain({ ...data, id });
