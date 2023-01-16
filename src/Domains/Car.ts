@@ -1,7 +1,7 @@
 import ICar from '../Interfaces/ICar';
-import AeBDomains from './AeBDomains';
+import Vehicle from './Vehicle';
 
-export default class Car extends AeBDomains {
+export default class Car extends Vehicle {
   private doorsQty: number;
   private seatsQty: number;
 
