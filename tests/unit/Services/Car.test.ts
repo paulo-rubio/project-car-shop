@@ -8,7 +8,7 @@ import app from '../../../src/app';
 import Connection from '../../../src/Models/Connection';
 // import ICar from '../../../src/Interfaces/ICar';
 // import car from '../../../src/Models/CarModel';
-import { carOutput } from './mocks.test';
+// import { carOutput } from './mocks.test';
 import { validCar } from '../../../__tests__/utils/CarsMock';
 import CarService from '../../../src/Services/CarService';
 
