@@ -29,4 +29,15 @@ export default class MotorcycleService {
     const motos = await this.model.findAll();
     return motos.map((moto) => MotorcycleService.createMotorcycleDomain(moto));
   }
+
+  async update(id: string, data: IMotorcycle) {
+    if (!isValidObjectId(id)) throw new Error('Invalid mongo id');
+
+    const motos = await this.model.findById(id);
+    if (!motos) throw new Error('Motorcycle not found');
+
+    await this.model.update(id, data);
+
+    return MotorcycleService.createMotorcycleDomain({ ...data, id });
+  }
 }

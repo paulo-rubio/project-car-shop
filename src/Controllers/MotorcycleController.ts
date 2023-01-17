@@ -40,4 +40,13 @@ export default class MotorcycleController {
       this.next(error);
     }
   }
+
+  async update() {
+    try {
+      const result = await this.service.update(this.req.params.id, this.req.body);
+      return this.res.status(200).json(result);
+    } catch (error) {
+      this.next(error);
+    }
+  }
 }
