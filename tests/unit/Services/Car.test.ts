@@ -1,13 +1,13 @@
-import { expect } from 'chai';
+// import { expect } from 'chai';
 import request from 'supertest';
 import sinon from 'sinon';
 import { Model } from 'mongoose';
-import CarService from '../../../src/Services/CarService';
+// import CarService from '../../../src/Services/CarService';
 import CarDomains from '../../../src/Domains/Car';
 import app from '../../../src/app';
 import Connection from '../../../src/Models/Connection';
-import car from '../../../src/Models/CarModel';
-import { validCar, updatedCar } from '../../../__tests__/utils/CarsMock';
+// import car from '../../../src/Models/CarModel';
+import { validCar } from '../../../__tests__/utils/CarsMock';
 
 describe('Testes em Car', function () {
   it('buscar todos os carros', async function () {
