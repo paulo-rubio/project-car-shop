@@ -17,6 +17,10 @@ export const carId = ({
   ...carNoId,
 });
 
+export const arrayCarId = [
+  carId,
+];
+
 export const motorcyclesNoID: IMotorcycle = {
   model: 'Honda Cbr 1000rr',
   year: 2011,
@@ -36,5 +40,9 @@ export const motorcyclesId = {
   category: 'Street',
   engineCapacity: 1000,
 };
+
+export const arrayMotorcycleId = [
+  motorcyclesId,
+];
 
 export const b = 'a';

@@ -2,20 +2,19 @@ import { expect } from 'chai';
 import request from 'supertest';
 import sinon from 'sinon';
 import { Model } from 'mongoose';
-// import service from '../../../src/Services/CarService';
 import CarDomains from '../../../src/Domains/Car';
 import app from '../../../src/app';
 import Connection from '../../../src/Models/Connection';
-// import ICar from '../../../src/Interfaces/ICar';
-// import car from '../../../src/Models/CarModel';
-// import { carOutput } from './mocks.test';
 import { validCar } from '../../../__tests__/utils/CarsMock';
 import CarService from '../../../src/Services/CarService';
-import { carId, carNoId } from './mocks.test';
+import { arrayCarId, carId, carNoId } from './mocks.test';
 
 describe('Testes em Car', function () {
   it('buscar todos os carros', async function () {
-    await request(app).get('./cars');
+    sinon.stub(Model, 'find').resolves(arrayCarId);
+    const service = new CarService();
+    const findAll = await service.findAll();
+    expect(findAll).to.be.deep.equal([carId]);
   });
   it('criar um carro', async function () {
     const result = new CarDomains({ ...validCar });

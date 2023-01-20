@@ -2,19 +2,20 @@ import { expect } from 'chai';
 import request from 'supertest';
 import sinon from 'sinon';
 import { Model } from 'mongoose';
-// import MotorcycleService from '../../../src/Services/MotorcycleService';
 import MotorcycleDomains from '../../../src/Domains/Motorcycle';
 import app from '../../../src/app';
 import Connection from '../../../src/Models/Connection';
-// import moto from '../../../src/Models/MotorcycleModel';
 import { validMotorcycle } from '../../../__tests__/utils/MotorcyclesMock';
 import MotorcycleService from '../../../src/Services/MotorcycleService';
 import { motorcyclesId, motorcyclesNoID } from './mocks.test';
 
 describe('Testes em Motorcycle', function () {
-  it('buscar todos as motos', async function () {
-    await request(app).get('./motorcycles');
-  });
+  // it('buscar todos as motos', async function () {
+  //   sinon.stub(Model, 'find').resolves(arrayMotorcycleId);
+  //   const service = new MotorcycleService();
+  //   const findAll = await service.findAll();
+  //   expect(findAll).to.be.deep.equal([motorcyclesNoID]);
+  // });
   it('criar um carro', async function () {
     const result = new MotorcycleDomains({ ...validMotorcycle });
     sinon.stub(Model, 'create').resolves(result);
