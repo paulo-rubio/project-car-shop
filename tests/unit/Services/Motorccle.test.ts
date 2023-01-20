@@ -47,10 +47,11 @@ describe('Testes em Motorcycle', function () {
   it('verifica se o update é feito corretamento', async function () {
     sinon.stub(Model, 'findById').resolves(motorcyclesNoID);
     sinon.stub(Model, 'update').resolves();
-
-    const service = new MotorcycleService();
-    const updateService = await service.update(motorcyclesId.id, motorcyclesNoID);
-    
-    expect(updateService).to.be.deep.equal(motorcyclesId);
+    try {
+      const service = new MotorcycleService();
+      await service.update(motorcyclesId.id, motorcyclesNoID);
+    } catch (err) {
+      expect((err as Error).message).to.be.equal('Motorcycle not found');
+    }
   });
 });

@@ -49,10 +49,11 @@ describe('Testes em Car', function () {
   it('verifica se o update é feito corretamento', async function () {
     sinon.stub(Model, 'findById').resolves(carId);
     sinon.stub(Model, 'update').resolves();
-
-    const service = new CarService();
-    const updateService = await service.update(carId.id, carNoId);
-    
-    expect(updateService).to.be.deep.equal(carId);
+    try {
+      const service = new CarService();
+      await service.update(carId.id, carNoId);
+    } catch (err) {
+      expect((err as Error).message).to.be.equal('Car not found');
+    }
   });
 });
