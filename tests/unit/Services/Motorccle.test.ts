@@ -1,4 +1,4 @@
-// import { expect } from 'chai';
+import { expect } from 'chai';
 import request from 'supertest';
 import sinon from 'sinon';
 import { Model } from 'mongoose';
@@ -8,6 +8,7 @@ import app from '../../../src/app';
 import Connection from '../../../src/Models/Connection';
 // import moto from '../../../src/Models/MotorcycleModel';
 import { validMotorcycle } from '../../../__tests__/utils/MotorcyclesMock';
+import MotorcycleService from '../../../src/Services/MotorcycleService';
 
 describe('Testes em Motorcycle', function () {
   it('buscar todos as motos', async function () {
@@ -21,5 +22,25 @@ describe('Testes em Motorcycle', function () {
     await Connection();
     sinon.restore();
     await request(app).post('/motorcycles').send(validMotorcycle);
+  });
+  it('Verifica se retorna o carro com erro de não encontrado', async function () {
+    sinon.stub(Model, 'findById').resolves({});
+    try {
+      const service = new MotorcycleService();
+      await service.findById('634852326b35b59438fbea2');
+    } catch (error) {
+      expect((error as Error).message).to.be.equal('Invalid mongo id');
+    }
+    sinon.restore();
+  });
+  it('Verifica se retorna um erro de moto não encontrada', async function () {
+    sinon.stub(Model, 'findById').resolves({});
+    try {
+      const service = new MotorcycleService();
+      await service.findById('634852326b35b59438fbea2f');
+    } catch (error) {
+      expect((error as Error).message).to.be.equal('Motorcycle not found');
+    }
+    sinon.restore();
   });
 });
