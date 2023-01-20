@@ -9,6 +9,7 @@ import Connection from '../../../src/Models/Connection';
 // import moto from '../../../src/Models/MotorcycleModel';
 import { validMotorcycle } from '../../../__tests__/utils/MotorcyclesMock';
 import MotorcycleService from '../../../src/Services/MotorcycleService';
+import { motorcyclesId, motorcyclesNoID } from './mocks.test';
 
 describe('Testes em Motorcycle', function () {
   it('buscar todos as motos', async function () {
@@ -42,5 +43,14 @@ describe('Testes em Motorcycle', function () {
       expect((error as Error).message).to.be.equal('Motorcycle not found');
     }
     sinon.restore();
+  });
+  it('verifica se o update é feito corretamento', async function () {
+    sinon.stub(Model, 'findById').resolves(motorcyclesNoID);
+    sinon.stub(Model, 'update').resolves();
+
+    const service = new MotorcycleService();
+    const updateService = await service.update(motorcyclesId.id, motorcyclesNoID);
+    
+    expect(updateService).to.be.deep.equal(motorcyclesId);
   });
 });

@@ -11,6 +11,7 @@ import Connection from '../../../src/Models/Connection';
 // import { carOutput } from './mocks.test';
 import { validCar } from '../../../__tests__/utils/CarsMock';
 import CarService from '../../../src/Services/CarService';
+import { carId, carNoId } from './mocks.test';
 
 describe('Testes em Car', function () {
   it('buscar todos os carros', async function () {
@@ -44,5 +45,14 @@ describe('Testes em Car', function () {
       expect((error as Error).message).to.be.equal('Car not found');
     }
     sinon.restore();
+  });
+  it('verifica se o update é feito corretamento', async function () {
+    sinon.stub(Model, 'findById').resolves(carId);
+    sinon.stub(Model, 'update').resolves();
+
+    const service = new CarService();
+    const updateService = await service.update(carId.id, carNoId);
+    
+    expect(updateService).to.be.deep.equal(carId);
   });
 });
